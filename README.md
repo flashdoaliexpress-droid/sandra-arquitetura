@@ -1,6 +1,6 @@
 # Sandra Arquitetura
 
-Site institucional de Sandra da Rocha — arquiteta especialista em reformas residenciais, com projeto autoral, design de interiores e acompanhamento de obra.
+Site institucional de Sandra da Rocha — arquiteta especialista em reformas. Transforma apartamentos antigos em lares atuais, preservando o que eles têm de melhor. Atende em Porto Alegre/RS.
 
 ## Stack
 

@@ -49,11 +49,10 @@ export default function Manifesto() {
           <p className="font-body-lg text-body-lg text-on-background/85 mb-14 md:mb-16 max-w-[640px]">
             Acredito que a arquitetura deve falar por si — especialmente em
             reformas, onde o desafio é maior e o resultado precisa parecer
-            inevitável. Não através de discursos complexos, mas pela clareza
-            das formas, pela honestidade dos materiais e pela intuição do uso.
-            Reformo espaços que reverberam a identidade de quem os habita,
-            traduzindo necessidades em soluções espaciais de sofisticação
-            silenciosa.
+            inevitável. Reformo apartamentos antigos preservando o que eles têm
+            de melhor: pela clareza das formas, pela honestidade dos materiais
+            e pela intuição do uso. Sem discursos complexos, sem demolir o que
+            faz sentido — apenas atualizando o que precisa.
           </p>
 
           {/* Pillars */}

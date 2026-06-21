@@ -60,9 +60,10 @@ export default function FinalCTA() {
 
             {/* Supporting text */}
             <p className="font-body-lg text-body-lg text-on-primary-container/90 mb-12 max-w-md">
-              Não importa se você acabou de comprar um imóvel ou se quer
-              reformar o que já é seu. A primeira conversa é gratuita, sem
-              compromisso, e, sinceramente, é onde toda boa reforma começa.
+              Não importa se você acabou de assumir as chaves ou se mora ali
+              há anos — transformar um apartamento em algo atual sem perder o
+              que ele tem de melhor é o que faço melhor. A primeira conversa é
+              gratuita, sem compromisso.
             </p>
 
             {/* CTAs */}

@@ -70,21 +70,25 @@ export default function About() {
               <p className="leading-[1.8]">
                 Formada pela{" "}
                 <strong className="font-medium">UNISINOS/RS</strong> em 1997,
-                sou <strong className="font-medium">especialista em reformas residenciais</strong>.
-                Quase três décadas dedicadas a transformar espaços existentes —
-                cada reforma é a tradução fiel de quem vai viver nela.
+                sou especialista em{" "}
+                <strong className="font-medium">
+                  transformar apartamentos antigos em lares atuais
+                </strong>{" "}
+                — preservando o que eles têm de melhor.
               </p>
               <p className="leading-[1.8]">
-                Trabalho do diagnóstico inicial à última peça de mobiliário —
-                cozinhas, banheiros, salas, apartamentos inteiros — costurando
-                projeto, interiores e execução em um único fio condutor, sem
-                terceirizações, sem ruído.
+                Quase três décadas ajudando proprietários a reformar imóveis
+                sem perder a alma do espaço. Trabalho do diagnóstico inicial à
+                última peça de mobiliário — cozinhas, banheiros, salas,
+                apartamentos inteiros — costurando projeto, interiores e
+                execução em um único fio condutor.
               </p>
               <p className="leading-[1.8]">
                 Acredito em ambientes que envelhecem com elegância, que
                 respeitam quem os usa, e que carregam histórias muito além da
-                estética. Especialmente em reformas, onde a história começa
-                antes da gente chegar.
+                estética. Em uma reforma, a história começa antes da gente
+                chegar — e o trabalho é preservar o que vale a pena e atualizar
+                o que precisa.
               </p>
             </div>
 
