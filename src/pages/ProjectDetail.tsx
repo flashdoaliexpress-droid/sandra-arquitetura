@@ -64,7 +64,7 @@ export default function ProjectDetail() {
 
           {/* Split: left sticky text + right gallery */}
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20">
-            {/* LEFT — sticky on desktop */}
+            {/* LEFT - sticky on desktop */}
             <aside className="lg:sticky lg:top-32 lg:self-start lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto pr-2">
               {/* Category chip */}
               <div className="inline-block border border-primary-container px-3 py-1 mb-8">
@@ -150,7 +150,7 @@ export default function ProjectDetail() {
               </div>
             </aside>
 
-            {/* RIGHT — gallery */}
+            {/* RIGHT - gallery */}
             <div className="flex flex-col gap-gutter">
               {allImages.map((src, i) => (
                 <figure
@@ -159,7 +159,7 @@ export default function ProjectDetail() {
                 >
                   <img
                     src={src}
-                    alt={`${project.title} — imagem ${i + 1}`}
+                    alt={`${project.title} - imagem ${i + 1}`}
                     loading={i === 0 ? "eager" : "lazy"}
                     className="w-full h-auto block"
                   />

@@ -48,7 +48,7 @@ const SERVICES: Service[] = [
     icon: "assignment",
     title: "GERENCIAMENTO DE OBRA",
     description:
-      "Coordenação completa da reforma — equipes, prazos, materiais e orçamento sob uma única liderança técnica.",
+      "Coordenação completa da reforma: equipes, prazos, materiais e orçamento sob uma única liderança técnica.",
   },
   {
     index: "07",

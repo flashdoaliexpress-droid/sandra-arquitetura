@@ -73,21 +73,21 @@ export default function About() {
                 sou especialista em{" "}
                 <strong className="font-medium">
                   transformar apartamentos antigos em lares atuais
-                </strong>{" "}
-                — preservando o que eles têm de melhor.
+                </strong>
+                , preservando o que eles têm de melhor.
               </p>
               <p className="leading-[1.8]">
                 Quase três décadas ajudando proprietários a reformar imóveis
                 sem perder a alma do espaço. Trabalho do diagnóstico inicial à
-                última peça de mobiliário — cozinhas, banheiros, salas,
-                apartamentos inteiros — costurando projeto, interiores e
+                última peça de mobiliário, em cozinhas, banheiros, salas e
+                apartamentos inteiros, costurando projeto, interiores e
                 execução em um único fio condutor.
               </p>
               <p className="leading-[1.8]">
                 Acredito em ambientes que envelhecem com elegância, que
                 respeitam quem os usa, e que carregam histórias muito além da
                 estética. Em uma reforma, a história começa antes da gente
-                chegar — e o trabalho é preservar o que vale a pena e atualizar
+                chegar, e o trabalho é preservar o que vale a pena e atualizar
                 o que precisa.
               </p>
             </div>

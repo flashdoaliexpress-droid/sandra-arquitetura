@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     description: [
       "A Casa Aurum é um projeto de reforma pensado para transformar a cozinha no verdadeiro centro da residência. Localizada no Lago Sul, em Brasília, a proposta nasceu para atender um casal jovem de empresários que valoriza praticidade, elegância e momentos de convivência dentro de casa.",
       "A reforma foi desenvolvida para ir além da função tradicional de uma cozinha. A ideia era transformar o ambiente em um espaço gourmet acolhedor, sofisticado e funcional, capaz de atender tanto à rotina diária quanto aos encontros com amigos e familiares.",
-      "A paleta de tons neutros — bege, taupe, madeira natural e preto — cria uma atmosfera contemporânea. A grande ilha central é o elemento protagonista, com acabamento em pedra clara e três banquetas. Armários planejados com acabamento fosco, painel ripado de madeira no backsplash, iluminação LED quente, geladeira inox e torre de madeira com fornos completam a composição.",
+      "A paleta de tons neutros (bege, taupe, madeira natural e preto) cria uma atmosfera contemporânea. A grande ilha central é o elemento protagonista, com acabamento em pedra clara e três banquetas. Armários planejados com acabamento fosco, painel ripado de madeira no backsplash, iluminação LED quente, geladeira inox e torre de madeira com fornos completam a composição.",
     ],
     cover: projeto1Cover,
     gallery: [projeto1g2, projeto1g3, projeto1g4],

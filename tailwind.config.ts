@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ===== Stitch Design System — Sandra Arquitetura =====
+        // ===== Stitch Design System - Sandra Arquitetura =====
         // Surface / Background
         background: "#fff8f6",
         surface: "#fff8f6",
