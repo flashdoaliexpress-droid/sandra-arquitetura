@@ -1,6 +1,6 @@
 # Sandra Arquitetura
 
-Site institucional de Sandra Mendes — arquitetura autoral, design de interiores e curadoria completa.
+Site institucional de Sandra da Rocha — arquiteta especialista em reformas residenciais, com projeto autoral, design de interiores e acompanhamento de obra.
 
 ## Stack
 

@@ -1,4 +1,4 @@
-import imagemCTAFinal from "../assets/IMAGEM CTA FINAL.png";
+import imagemCTAFinal from "../assets/IMAGEM CTA FINAL (2).png";
 
 const CTA_IMAGE = imagemCTAFinal;
 
@@ -52,7 +52,7 @@ export default function FinalCTA() {
 
             {/* Headline */}
             <h2 className="font-display-lg text-[36px] md:text-[44px] leading-[1.1] tracking-[0.04em] text-on-primary-container mb-8 uppercase font-normal">
-              SEU PRÓXIMO LAR COMEÇA COM UMA{" "}
+              SUA PRÓXIMA REFORMA COMEÇA COM UMA{" "}
               <span className="text-white border-b border-white pb-1 inline-block">
                 CONVERSA.
               </span>
@@ -60,9 +60,9 @@ export default function FinalCTA() {
 
             {/* Supporting text */}
             <p className="font-body-lg text-body-lg text-on-primary-container/90 mb-12 max-w-md">
-              Não importa se você tem só uma planta na mão ou um sonho ainda
-              sem forma. A primeira conversa é gratuita, sem compromisso, e,
-              sinceramente, é onde tudo de bom começa.
+              Não importa se você acabou de comprar um imóvel ou se quer
+              reformar o que já é seu. A primeira conversa é gratuita, sem
+              compromisso, e, sinceramente, é onde toda boa reforma começa.
             </p>
 
             {/* CTAs */}

@@ -1,4 +1,4 @@
-import imagemSobre from "../assets/Imagem SOBRE.png";
+import imagemSobre from "../assets/Imagem SOBRE (2).png";
 
 const PORTRAIT = imagemSobre;
 
@@ -33,15 +33,15 @@ export default function About() {
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                 style={{ filter: "grayscale(15%) sepia(8%) contrast(1.05)" }}
                 src={PORTRAIT}
-                alt="Retrato profissional de Sandra Mendes, arquiteta, em um estúdio iluminado com paredes off-white e luz natural."
+                alt="Retrato profissional de Sandra da Rocha, arquiteta especialista em reformas residenciais."
               />
               {/* Overlay block */}
               <div className="absolute bottom-0 left-0 bg-background border-t border-r border-outline-variant/50 p-6 md:p-8 translate-y-4 translate-x-4">
                 <h2 className="font-display-lg text-headline-md tracking-[0.08em] text-on-surface mb-1 uppercase">
-                  SANDRA MENDES
+                  SANDRA DA ROCHA
                 </h2>
                 <p className="font-body-md text-label-caps text-on-surface-variant tracking-[0.1em]">
-                  Arquiteta · UNISINOS/RS
+                  Arquiteta · Especialista em Reformas · UNISINOS/RS
                 </p>
               </div>
             </div>
@@ -68,19 +68,23 @@ export default function About() {
             {/* Body */}
             <div className="space-y-5 font-body-md text-on-surface/85 max-w-[90%] border-l border-outline-variant pl-6 mb-12">
               <p className="leading-[1.8]">
-                Formada pela <strong className="font-medium">UNISINOS/RS</strong>{" "}
-                em 1997, dediquei quase três décadas a uma convicção: cada
-                projeto é a tradução fiel de quem vai viver nele.
+                Formada pela{" "}
+                <strong className="font-medium">UNISINOS/RS</strong> em 1997,
+                sou <strong className="font-medium">especialista em reformas residenciais</strong>.
+                Quase três décadas dedicadas a transformar espaços existentes —
+                cada reforma é a tradução fiel de quem vai viver nela.
               </p>
               <p className="leading-[1.8]">
-                Trabalho do esboço inicial à última peça de mobiliário,
-                costurando arquitetura, interiores e execução em um único fio
-                condutor, sem terceirizações, sem ruído.
+                Trabalho do diagnóstico inicial à última peça de mobiliário —
+                cozinhas, banheiros, salas, apartamentos inteiros — costurando
+                projeto, interiores e execução em um único fio condutor, sem
+                terceirizações, sem ruído.
               </p>
               <p className="leading-[1.8]">
                 Acredito em ambientes que envelhecem com elegância, que
                 respeitam quem os usa, e que carregam histórias muito além da
-                estética.
+                estética. Especialmente em reformas, onde a história começa
+                antes da gente chegar.
               </p>
             </div>
 

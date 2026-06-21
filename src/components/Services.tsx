@@ -11,9 +11,9 @@ const SERVICES: Service[] = [
   {
     index: "01",
     icon: "architecture",
-    title: "PROJETO ARQUITETÔNICO",
+    title: "PROJETO DE REFORMA",
     description:
-      "Plantas, fachadas e documentação técnica completa para aprovação e execução do projeto.",
+      "Plantas, projeto técnico e documentação completa para reformar ambientes ou imóveis inteiros, com responsabilidade técnica.",
   },
   {
     index: "02",
@@ -27,14 +27,14 @@ const SERVICES: Service[] = [
     icon: "engineering",
     title: "ACOMPANHAMENTO DE OBRA",
     description:
-      "Visitas técnicas e gestão para garantir que o projeto saia exatamente como foi desenhado.",
+      "Visitas técnicas e gestão da reforma para garantir que cada detalhe saia exatamente como foi desenhado.",
   },
   {
     index: "04",
     icon: "home_work",
     title: "CONSULTORIA DE IMÓVEL",
     description:
-      "Avaliação técnica antes da compra: potencial, problemas estruturais e possibilidades.",
+      "Avaliação técnica antes da compra: potencial de reforma, problemas estruturais e possibilidades de transformação.",
   },
   {
     index: "05",
@@ -87,16 +87,16 @@ export default function Services() {
             SERVIÇOS
           </span>
           <h2 className="font-display-lg text-display-lg-mobile md:text-[44px] leading-[1.1] tracking-[0.045em] text-on-primary-container max-w-[800px] uppercase">
-            COMO POSSO REALIZAR SEU{" "}
+            COMO POSSO TRANSFORMAR SEU{" "}
             <span className="text-white border-b-2 border-white pb-1 inline-block">
-              SONHO
+              LAR
             </span>{" "}
             ?
           </h2>
           <p className="font-body-lg text-body-lg text-on-primary-container/85 mt-8 max-w-[600px]">
-            Do primeiro esboço à última luminária instalada, cada etapa
-            pensada para que o projeto saia exatamente como você imaginou (ou
-            ainda nem sabia que queria).
+            Do diagnóstico do espaço existente à última luminária instalada,
+            cada etapa da sua reforma pensada para que o resultado supere o
+            que você imaginou (ou ainda nem sabia que queria).
           </p>
         </div>
 

@@ -47,11 +47,13 @@ export default function Manifesto() {
 
           {/* Paragraph */}
           <p className="font-body-lg text-body-lg text-on-background/85 mb-14 md:mb-16 max-w-[640px]">
-            Acredito que a arquitetura deve falar por si. Não através de
-            discursos complexos, mas pela clareza das formas, pela honestidade
-            dos materiais e pela intuição do uso. Crio espaços que reverberam a
-            identidade de quem os habita, traduzindo necessidades em soluções
-            espaciais de sofisticação silenciosa.
+            Acredito que a arquitetura deve falar por si — especialmente em
+            reformas, onde o desafio é maior e o resultado precisa parecer
+            inevitável. Não através de discursos complexos, mas pela clareza
+            das formas, pela honestidade dos materiais e pela intuição do uso.
+            Reformo espaços que reverberam a identidade de quem os habita,
+            traduzindo necessidades em soluções espaciais de sofisticação
+            silenciosa.
           </p>
 
           {/* Pillars */}
