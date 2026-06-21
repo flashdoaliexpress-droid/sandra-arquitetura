@@ -31,10 +31,10 @@ const SERVICES: Service[] = [
   },
   {
     index: "04",
-    icon: "assignment",
-    title: "GERENCIAMENTO DE OBRA",
+    icon: "home_work",
+    title: "CONSULTORIA DE IMÓVEL",
     description:
-      "Coordenação completa da reforma — equipes, prazos, materiais e orçamento sob uma única liderança técnica.",
+      "Avaliação técnica antes da compra: potencial de reforma, problemas estruturais e possibilidades de transformação.",
   },
   {
     index: "05",
@@ -45,10 +45,10 @@ const SERVICES: Service[] = [
   },
   {
     index: "06",
-    icon: "weekend",
-    title: "CURADORIA DE MÓVEIS",
+    icon: "assignment",
+    title: "GERENCIAMENTO DE OBRA",
     description:
-      "Indicação de fornecedores e peças que conciliam estética, durabilidade e orçamento.",
+      "Coordenação completa da reforma — equipes, prazos, materiais e orçamento sob uma única liderança técnica.",
   },
   {
     index: "07",
