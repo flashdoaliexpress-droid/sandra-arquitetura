@@ -71,7 +71,7 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row justify-between items-end w-full">
           {/* Headline */}
           <div className="flex flex-col items-start">
-            <div className="w-px h-16 md:h-24 bg-white/60 mb-6 ml-1" />
+            <div className="hidden md:block w-px h-24 bg-white/60 mb-6 ml-1" />
             <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white leading-[1.0] tracking-[0.04em] uppercase max-w-3xl">
               ARQUITETURA
               <br />

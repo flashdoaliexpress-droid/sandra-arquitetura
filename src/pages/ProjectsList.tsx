@@ -113,29 +113,7 @@ export default function ProjectsList() {
       <Navbar />
       <main className="bg-background min-h-screen pt-32 md:pt-40 pb-24">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          {/* Header */}
-          <div className="mb-16 md:mb-20 max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-px bg-primary-container" />
-              <span className="font-label-caps text-label-caps tracking-[0.4em] text-primary-container uppercase">
-                PORTFÓLIO
-              </span>
-            </div>
-            <h1 className="font-display-lg text-[40px] md:text-[56px] leading-[1.1] tracking-[0.04em] uppercase text-on-surface">
-              OBRAS QUE{" "}
-              <span className="text-primary-container border-b-2 border-primary-container pb-1 inline-block">
-                FALAM
-              </span>{" "}
-              POR SI.
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 max-w-[560px]">
-              Cada projeto é uma tradução fiel de quem o habita. Residências,
-              interiores e espaços comerciais com a mesma assinatura — autoral,
-              atemporal, presente.
-            </p>
-          </div>
-
-          {/* Tabs */}
+          {/* Tabs (textos guias) */}
           <div className="border-b border-outline-variant mb-12 md:mb-16 overflow-x-auto">
             <div className="flex gap-8 md:gap-12 min-w-fit">
               {CATEGORIES.map((tab) => {

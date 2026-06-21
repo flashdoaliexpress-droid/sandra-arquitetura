@@ -26,9 +26,9 @@ export default function Manifesto() {
       id="manifesto"
       className="relative w-full overflow-hidden min-h-[640px] md:min-h-[820px] flex items-center bg-background"
     >
-      <div className="w-full max-w-container-max mx-auto pl-margin-mobile md:pl-margin-desktop flex flex-col lg:flex-row h-full">
+      <div className="w-full max-w-container-max mx-auto lg:pl-margin-desktop flex flex-col-reverse lg:flex-row h-full">
         {/* LEFT - 60% text */}
-        <div className="w-full lg:w-[60%] pt-16 pb-16 lg:py-24 pr-margin-mobile lg:pr-gutter flex flex-col justify-center z-10 relative">
+        <div className="w-full lg:w-[60%] pt-12 pb-16 lg:py-24 px-margin-mobile lg:px-0 lg:pr-gutter flex flex-col justify-center z-10 relative">
           {/* Eyebrow */}
           <div className="flex items-center space-x-4 mb-8">
             <div className="w-12 h-px bg-primary-container" />
@@ -88,8 +88,8 @@ export default function Manifesto() {
           </a>
         </div>
 
-        {/* RIGHT - 40% image (bleeding off the right) */}
-        <div className="w-full lg:w-[40%] h-[480px] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:bottom-0">
+        {/* RIGHT - 40% image (full-bleed top on mobile, anchored right on desktop) */}
+        <div className="w-full aspect-[4/3] lg:aspect-auto lg:w-[40%] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:bottom-0">
           <div className="relative w-full h-full">
             {/* Chapter marker */}
             <div
