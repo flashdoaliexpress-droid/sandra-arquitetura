@@ -1,131 +1,70 @@
-import { useEffect, useRef, useState } from "react";
-import videoDesktop from "../assets/antes-depois-scroll.mp4";
-import videoMobile from "../assets/antes-depois-mobile.mp4";
+import { useEffect, useRef } from "react";
+import videoSrc from "../assets/antes-depois.mp4";
 import { useInView } from "../hooks/useInView";
 
-const SCROLL_MULTIPLIER = 3;
-
 export default function Reforma() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const text = useInView<HTMLDivElement>(0.2);
 
   useEffect(() => {
-    setIsMobile(window.matchMedia("(max-width: 767px)").matches);
-  }, []);
-
-  useEffect(() => {
     const video = videoRef.current;
-    const wrapper = wrapperRef.current;
-    if (!video || !wrapper) return;
+    if (!video) return;
 
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (reduced) {
-      setReady(true);
-      return;
-    }
-
-    let rafId = 0;
-    let lastTarget = -1;
-
-    const update = () => {
-      rafId = 0;
-      const duration = video.duration;
-      if (!duration || Number.isNaN(duration)) return;
-
-      const rect = wrapper.getBoundingClientRect();
-      const total = wrapper.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / total));
-      const targetTime = progress * duration;
-
-      if (Math.abs(targetTime - lastTarget) < 1 / 60) return;
-      lastTarget = targetTime;
-
-      if (Math.abs(video.currentTime - targetTime) > 0.01) {
-        video.currentTime = targetTime;
-      }
-    };
-
-    const onScroll = () => {
-      if (!rafId) rafId = requestAnimationFrame(update);
-    };
-
-    const onMeta = () => {
-      setReady(true);
-      onScroll();
-    };
-
-    if (video.readyState >= 1) {
-      onMeta();
-    } else {
-      video.addEventListener("loadedmetadata", onMeta);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      video.removeEventListener("loadedmetadata", onMeta);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(rafId);
-    };
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(video);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      id="reforma"
-      ref={wrapperRef}
-      className="relative w-full bg-background"
-      style={{ height: `${SCROLL_MULTIPLIER * 100}vh` }}
-    >
-      <div className="sticky top-0 w-full overflow-hidden h-screen [height:100dvh]">
-        <div className="h-full flex flex-col md:flex-row items-stretch md:items-center justify-start md:justify-between pb-14 md:pb-0">
-          {/* LEFT — Headline / Subheadline */}
-          <div
-            ref={text.ref}
-            className={`w-full md:w-1/2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-6 md:py-0 opacity-0 ${
-              text.inView ? "animate-fade-up" : ""
-            }`}
-          >
-            <h2 className="font-display-lg text-[32px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[0.04em] uppercase text-on-surface mb-6 md:mb-8 max-w-[640px]">
-              <span className="text-primary-container border-b border-primary-container pb-1 inline-block">
-                RECOMEÇAR
-              </span>
-              , SEM APAGAR.
-            </h2>
-            <p className="font-body-lg text-[15px] md:text-body-lg text-on-surface/85 max-w-[520px] leading-[1.7]">
-              Reformar não é apagar a história do apartamento. É reconhecer o
-              que ele tem de melhor, ajustar o que não funciona mais e
-              devolvê-lo atualizado, com a alma intacta. Cada reforma é um
-              recomeço, sem precisar começar do zero.
-            </p>
-          </div>
+    <section id="reforma" className="relative w-full bg-background overflow-hidden">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center">
+        {/* LEFT — Headline / Subheadline */}
+        <div
+          ref={text.ref}
+          className={`w-full md:w-1/2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-16 md:py-24 opacity-0 ${
+            text.inView ? "animate-fade-up" : ""
+          }`}
+        >
+          <h2 className="font-display-lg text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[0.04em] uppercase text-on-surface mb-8 max-w-[640px]">
+            <span className="text-primary-container border-b border-primary-container pb-1 inline-block">
+              RECOMEÇAR
+            </span>
+            , SEM APAGAR.
+          </h2>
+          <p className="font-body-lg text-body-lg text-on-surface/85 max-w-[520px] leading-[1.7]">
+            Reformar não é apagar a história do apartamento. É reconhecer o
+            que ele tem de melhor, ajustar o que não funciona mais e
+            devolvê-lo atualizado, com a alma intacta. Cada reforma é um
+            recomeço, sem precisar começar do zero.
+          </p>
+        </div>
 
-          {/* RIGHT — Scroll-scrub video (full bleed right) */}
-          <div className="w-full md:w-1/2 flex md:justify-end">
-            <div className="relative h-[44vh] [height:44dvh] md:h-[88vh] md:[height:88dvh] aspect-[804/1144] w-full md:w-auto">
-              <video
-                ref={videoRef}
-                src={isMobile ? videoMobile : videoDesktop}
-                muted
-                playsInline
-                preload="auto"
-                disableRemotePlayback
-                className={`w-full h-full object-cover transition-opacity duration-700 ${
-                  ready ? "opacity-100" : "opacity-0"
-                }`}
-              />
-              {/* Badge cobrindo logo do Kling */}
-              <div className="absolute bottom-0 right-0 bg-background border-t border-l border-outline-variant/60 px-4 py-3 md:px-6 md:py-4">
-                <span className="font-label-caps text-[11px] md:text-[12px] tracking-[0.3em] text-on-surface uppercase">
-                  Antes, Depois
-                </span>
-              </div>
+        {/* RIGHT — Video full-bleed direita */}
+        <div className="w-full md:w-1/2 flex md:justify-end">
+          <div className="relative w-full md:w-auto h-[70vh] md:h-[88vh] aspect-[804/1144]">
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              muted
+              playsInline
+              preload="auto"
+              disableRemotePlayback
+              className="w-full h-full object-cover"
+            />
+            {/* Badge cobrindo logo do Kling */}
+            <div className="absolute bottom-0 right-0 bg-background border-t border-l border-outline-variant/60 px-4 py-3 md:px-6 md:py-4">
+              <span className="font-label-caps text-[11px] md:text-[12px] tracking-[0.3em] text-on-surface uppercase">
+                Antes, Depois
+              </span>
             </div>
           </div>
         </div>
