@@ -25,7 +25,7 @@ export default function Reforma() {
   }, []);
 
   return (
-    <section id="reforma" className="relative w-full bg-background overflow-hidden">
+    <section id="reforma" className="relative w-full bg-background overflow-hidden mb-10 md:mb-0">
       <div className="flex flex-col md:flex-row items-stretch md:items-center">
         {/* LEFT — Headline / Subheadline */}
         <div
