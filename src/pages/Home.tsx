@@ -5,7 +5,9 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Manifesto from "../components/Manifesto";
 import Projects from "../components/Projects";
+import Reforma from "../components/Reforma";
 import Services from "../components/Services";
+import Banner from "../components/Banner";
 import FinalCTA from "../components/FinalCTA";
 import Footer from "../components/Footer";
 
@@ -37,7 +39,10 @@ export default function Home() {
         <About />
         <Manifesto />
         <Services />
+        <div aria-hidden className="h-10 md:hidden bg-background" />
+        <Banner />
         <Projects />
+        <Reforma />
         <FinalCTA />
       </main>
       <Footer />

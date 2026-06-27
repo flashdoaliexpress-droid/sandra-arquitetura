@@ -1,4 +1,5 @@
 import imagemSessaoComplementar from "../assets/Imagem Sessão Complementar.png";
+import { useInView } from "../hooks/useInView";
 
 const MANIFESTO_IMAGE = imagemSessaoComplementar;
 
@@ -21,6 +22,9 @@ const PILLARS = [
 ];
 
 export default function Manifesto() {
+  const text = useInView<HTMLDivElement>(0.15);
+  const image = useInView<HTMLDivElement>(0.15);
+
   return (
     <section
       id="manifesto"
@@ -28,15 +32,12 @@ export default function Manifesto() {
     >
       <div className="w-full max-w-container-max mx-auto lg:pl-margin-desktop flex flex-col-reverse lg:flex-row h-full">
         {/* LEFT - 60% text */}
-        <div className="w-full lg:w-[60%] pt-12 pb-16 lg:py-24 px-margin-mobile lg:px-0 lg:pr-gutter flex flex-col justify-center z-10 relative">
-          {/* Eyebrow */}
-          <div className="flex items-center space-x-4 mb-8">
-            <div className="w-12 h-px bg-primary-container" />
-            <span className="font-label-caps text-[11px] uppercase tracking-[0.4em] text-primary-container">
-              MANIFESTO
-            </span>
-          </div>
-
+        <div
+          ref={text.ref}
+          className={`w-full lg:w-[60%] pt-12 pb-16 lg:py-24 px-margin-mobile lg:px-0 lg:pr-gutter flex flex-col justify-center z-10 relative opacity-0 ${
+            text.inView ? "animate-fade-up" : ""
+          }`}
+        >
           {/* Headline */}
           <h2 className="font-display-lg text-[40px] md:text-[44px] leading-[1.1] tracking-[0.04em] uppercase text-on-background mb-10 max-w-[800px]">
             PROJETO BOM É AQUELE QUE VOCÊ NÃO PRECISA{" "}
@@ -90,15 +91,13 @@ export default function Manifesto() {
         </div>
 
         {/* RIGHT - 40% image (full-bleed top on mobile, anchored right on desktop) */}
-        <div className="w-full aspect-[4/3] lg:aspect-auto lg:w-[40%] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:bottom-0">
+        <div
+          ref={image.ref}
+          className={`w-full aspect-[4/3] lg:aspect-auto lg:w-[40%] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:bottom-0 opacity-0 ${
+            image.inView ? "animate-fade-in" : ""
+          }`}
+        >
           <div className="relative w-full h-full">
-            {/* Chapter marker */}
-            <div
-              className="absolute top-6 left-6 md:top-8 md:left-8 z-10 font-headline-md text-[14px] text-on-primary tracking-widest"
-              style={{ mixBlendMode: "difference" }}
-            >
-              II / VI
-            </div>
             <div
               className="w-full h-full bg-cover bg-center transition-all duration-700 hover:filter hover:grayscale-0"
               style={{

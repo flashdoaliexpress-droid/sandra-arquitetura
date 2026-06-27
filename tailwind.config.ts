@@ -133,6 +133,20 @@ export default {
         "3xl": "0",
         full: "0",
       },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "fade-in": "fade-in 1.1s ease-out forwards",
+      },
     },
   },
   plugins: [],

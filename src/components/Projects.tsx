@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "../hooks/useInView";
 
 type Project = {
   index: string;
@@ -48,6 +49,7 @@ const PROJECTS: Project[] = [
 
 export default function Projects() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const header = useInView<HTMLDivElement>(0.2);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = scrollerRef.current;
@@ -62,26 +64,6 @@ export default function Projects() {
       id="projetos"
       className="relative w-full overflow-hidden bg-background py-20 md:py-32"
     >
-      {/* Blueprint grid (top + bottom) */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-[calc(50%-180px)] pointer-events-none z-0"
-        style={{
-          backgroundSize: "40px 40px",
-          backgroundImage:
-            "linear-gradient(to right, rgba(216, 194, 188, 0.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(216, 194, 188, 0.35) 1px, transparent 1px)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 top-[calc(50%+180px)] pointer-events-none z-0"
-        style={{
-          backgroundSize: "40px 40px",
-          backgroundImage:
-            "linear-gradient(to right, rgba(216, 194, 188, 0.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(216, 194, 188, 0.35) 1px, transparent 1px)",
-        }}
-      />
-
       {/* Terracotta band crossing the middle */}
       <div
         aria-hidden
@@ -90,14 +72,13 @@ export default function Projects() {
 
       <div className="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col gap-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-4">
+        <div
+          ref={header.ref}
+          className={`flex flex-col md:flex-row justify-between items-end gap-8 mb-4 opacity-0 ${
+            header.inView ? "animate-fade-up" : ""
+          }`}
+        >
           <div className="flex flex-col gap-4 max-w-2xl">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-px bg-primary-container" />
-              <span className="font-label-caps text-label-caps tracking-[0.4em] text-primary-container uppercase">
-                PROJETOS SELECIONADOS
-              </span>
-            </div>
             <h2 className="font-display-lg text-[40px] md:text-[44px] leading-[1.1] tracking-[0.04em] uppercase text-on-surface">
               OBRAS QUE{" "}
               <span className="text-primary-container border-b-2 border-primary-container pb-1 inline-block">

@@ -17,31 +17,31 @@ const SERVICES: Service[] = [
   },
   {
     index: "02",
+    icon: "domain",
+    title: "PROJETO ARQUITETÔNICO",
+    description:
+      "Construção do zero: concepção do imóvel inteiro, do partido arquitetônico à entrega das chaves, com responsabilidade técnica.",
+  },
+  {
+    index: "03",
     icon: "chair",
     title: "DESIGN DE INTERIORES",
     description:
       "Ambientes pensados em camadas: cor, textura, mobiliário e luz como um só.",
   },
   {
-    index: "03",
+    index: "04",
     icon: "engineering",
     title: "ACOMPANHAMENTO DE OBRA",
     description:
       "Visitas técnicas e gestão da reforma para garantir que cada detalhe saia exatamente como foi desenhado.",
   },
   {
-    index: "04",
+    index: "05",
     icon: "home_work",
     title: "CONSULTORIA DE IMÓVEL",
     description:
       "Avaliação técnica antes da compra: potencial de reforma, problemas estruturais e possibilidades de transformação.",
-  },
-  {
-    index: "05",
-    icon: "layers",
-    title: "SELEÇÃO DE MATERIAIS",
-    description:
-      "Curadoria de porcelanatos, revestimentos e acabamentos com o melhor custo-benefício.",
   },
   {
     index: "06",
@@ -50,42 +50,27 @@ const SERVICES: Service[] = [
     description:
       "Coordenação completa da reforma: equipes, prazos, materiais e orçamento sob uma única liderança técnica.",
   },
-  {
-    index: "07",
-    icon: "lightbulb",
-    title: "PROJETO LUMINOTÉCNICO",
-    description:
-      "Planejamento de pontos de luz, temperatura e cenas que transformam o ambiente.",
-  },
-  {
-    index: "08",
-    icon: "support_agent",
-    title: "CONSULTORIA PONTUAL",
-    description:
-      "Para dúvidas específicas, orientação objetiva por sessão, sem contrato completo.",
-  },
 ];
 
+import { useInView } from "../hooks/useInView";
+
 export default function Services() {
-  const handleSchedule = () => {
-    const phone = "555181149971";
-    const message = encodeURIComponent(
-      "Olá Sandra! Gostaria de agendar uma conversa sobre meu projeto."
-    );
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-  };
+  const header = useInView<HTMLDivElement>(0.2);
+  const grid = useInView<HTMLDivElement>(0.1);
 
   return (
     <section
       id="servicos"
-      className="relative w-full bg-primary-container text-on-primary-container py-24 md:py-32 pb-32 md:pb-48"
+      className="relative w-full bg-primary-container text-on-primary-container py-24 md:py-32"
     >
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Header */}
-        <div className="mb-16 md:mb-24">
-          <span className="block font-label-caps text-label-caps tracking-[0.45em] text-on-primary-container/70 mb-6 uppercase">
-            SERVIÇOS
-          </span>
+        <div
+          ref={header.ref}
+          className={`mb-16 md:mb-24 opacity-0 ${
+            header.inView ? "animate-fade-up" : ""
+          }`}
+        >
           <h2 className="font-display-lg text-display-lg-mobile md:text-[44px] leading-[1.1] tracking-[0.045em] text-on-primary-container max-w-[800px] uppercase">
             COMO POSSO TRANSFORMAR SEU{" "}
             <span className="text-white border-b-2 border-white pb-1 inline-block">
@@ -101,7 +86,12 @@ export default function Services() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-on-primary-container/25">
+        <div
+          ref={grid.ref}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-on-primary-container/25 opacity-0 ${
+            grid.inView ? "animate-fade-up" : ""
+          }`}
+        >
           {SERVICES.map((s, i) => (
             <div
               key={s.index}
@@ -165,31 +155,6 @@ export default function Services() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-24 md:mt-32 text-center max-w-2xl mx-auto flex flex-col items-center">
-          <div className="w-px h-16 bg-on-primary-container/40 mb-8" />
-          <h3 className="font-headline-lg text-headline-lg text-on-primary-container uppercase mb-6">
-            NÃO SABE POR ONDE COMEÇAR?
-          </h3>
-          <p className="font-body-lg text-body-lg text-on-primary-container/85 mb-10 max-w-[520px]">
-            A primeira conversa é gratuita, me conta seu projeto e eu te
-            oriento o próximo passo.
-          </p>
-          <button
-            onClick={handleSchedule}
-            className="inline-flex items-center justify-center border border-on-primary-container px-12 py-5 font-label-caps text-label-caps tracking-[0.35em] text-on-primary-container hover:bg-on-primary-container hover:text-primary-container transition-colors duration-300 uppercase"
-          >
-            AGENDAR CONVERSA
-            <span
-              className="material-symbols-outlined ml-3"
-              style={{ fontSize: "16px" }}
-              aria-hidden
-            >
-              arrow_forward
-            </span>
-          </button>
         </div>
       </div>
     </section>
