@@ -8,6 +8,7 @@ import Projects from "../components/Projects";
 import Reforma from "../components/Reforma";
 import Services from "../components/Services";
 import Banner from "../components/Banner";
+import Testimonials from "../components/Testimonials";
 import FinalCTA from "../components/FinalCTA";
 import Footer from "../components/Footer";
 
@@ -43,6 +44,7 @@ export default function Home() {
         <Banner />
         <Projects />
         <Reforma />
+        <Testimonials />
         <FinalCTA />
       </main>
       <Footer />
