@@ -1,51 +1,23 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useInView } from "../hooks/useInView";
+import { PROJECTS as PROJECT_DATA } from "../projects/data";
 
-type Project = {
+type CardProject = {
   index: string;
+  slug: string;
   title: string;
   location: string;
   image: string;
 };
 
-const PROJECTS: Project[] = [
-  {
-    index: "01",
-    title: "CASA ALVORADA",
-    location: "PORTO ALEGRE, RS",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDJGVrxK7O5mQLBPqOWKOxgX9NMk1KEMeP5w0PfJUX7yOVUbWtKVazFQAAI3gKeogYIRJq36z2FN_-FCvyzqiSuOLnwc4ZGcKjzRRU7DZBB3kG5cAt28ey_6AMQdtIjATcJzRpJzjI4ydF3ZkPbE8BqZMbV4qZi9UUqwSYByTEd4h27--o064uZ23dJ_P8-Rkk0BoNcbJMgMKUkdz6e6vAOVMe_Kn8vPgbYHKyuLjnIx5Uq55u7mTvLcQMI9uDSXIHwnSiUVtMmx6Jd",
-  },
-  {
-    index: "02",
-    title: "EDIFÍCIO VERITAS",
-    location: "GRAMADO, RS",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBS9ipEIOeyfIY37CgijTrV4_FaMJZXO2RGE-UofX54EoywKueBftyDeuIizH8q9vRQKTXSaGkNf_2LpL9x_yOAllsOYfUPEGyN1j-q_B4-sZON6iVfRE-PTQwsMmiD_vTDSKO9E7OOHYkgLYRlgN5FU7aE0Tev5d34je36Gc43lJj5JYVNHCNgLmZKo1uM-QTLl46ndw68MMOzsubLctpXZBYqEiUWbXkN7_RpuHp1oV85clqWjtMOmI9Xnc1dxk4SKSrnQhQB8AYa",
-  },
-  {
-    index: "03",
-    title: "PAVILHÃO TERRA",
-    location: "CANELA, RS",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB_nAXt1HNL7iA0rT_HmvzMI-Ma9NKqS5DLCCDxiBeyodzH5P6Cztz1_1jfjlonf5mdjLmiZk12wOFRiSLD-k7FeD2XWnEDK3O9sgdoVqy5Tcth_DSl3SFO4wjVvyV3XgT3t8JkNh_JeoGuBsEA4RbE4Q5MzCLVwMSwxadO5ehZYt4KOnpGkgiYhCGur2G62rQNCcticmdk2Q8gqnKJgD_9N11Eh_SLCLQOQ08GV6pTK3vtc-oJG4v9lEJfHECULMeiUadN1Rwfj2OI",
-  },
-  {
-    index: "04",
-    title: "GALERIA MONOLITO",
-    location: "CAXIAS DO SUL, RS",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD1OJU9BWEYv8-0m1dYFo9PeB2v8x3VOijWrm2KKhued3PZ1Yxj2Lsqj_ZJYN_ARq3Ri6S-0akZawLtfkDYR1a0PnElVz_RHcyp8P-Daeb3Ou4GBe8c9spC7hhOD4dHel3TUxgY1w0HPYT4qSSYE7LC7r6oaQMAJaGvbJSw1DMXhlafVhtnEpaXEjDgvg7sknRfr_Zd1ws_NwQHidSx4i1jrrQG7np35MwtAliG2ENwhp8J0eiBfhPglG2j_Nv8X7smLhWGzHvUWwo1",
-  },
-  {
-    index: "05",
-    title: "INSTITUTO HORIZONTE",
-    location: "PORTO ALEGRE, RS",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAAEIsi-9pDvEYpHrs3Uvi_Bz515W9WWMpsnHqzIUaxvI9dVl0poPAZU6lnp32Qtw06i5dcW8iz8AbwwFR0Ss8-RsmoN1U2_UK28KwptwHk_paYMrYVvks9KIhVtHqC4e4mWoO8SYArlfpRu4IeP89FYA5r4JFvIIKb6QvM-z0AcTWauqLZv5alBFEB31Vv2RoOP61eVvrDhMAND0ZlyHEl0ruHQ1rk5BJ9cq7kCJnPyY6x2gm3VH0hw9xjeUt0wt2PZ2fn_v-zxWwT",
-  },
-];
+const PROJECTS: CardProject[] = PROJECT_DATA.map((p, i) => ({
+  index: String(i + 1).padStart(2, "0"),
+  slug: p.slug,
+  title: p.title,
+  location: p.city.toUpperCase(),
+  image: p.cover,
+}));
 
 export default function Projects() {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +61,7 @@ export default function Projects() {
           </div>
           <div className="flex flex-col items-end gap-2 shrink-0 pb-2">
             <span className="font-label-caps text-[11px] tracking-[0.3em] text-on-surface-variant uppercase">
-              0{PROJECTS.length} PROJETOS
+              {String(PROJECTS.length).padStart(2, "0")} PROJETOS
             </span>
             <div className="w-16 h-px bg-outline-variant" />
           </div>
@@ -106,21 +78,27 @@ export default function Projects() {
             }}
           >
             {PROJECTS.map((p) => (
-              <div
-                key={p.index}
+              <Link
+                key={p.slug}
+                to={`/projetos/${p.slug}`}
                 data-card
                 className="snap-start shrink-0 w-[280px] md:w-[320px] aspect-[3/4] flex flex-col bg-surface-container-lowest border border-outline-variant group cursor-pointer"
               >
                 <div className="relative w-full h-[calc(100%-70px)] bg-surface-container overflow-hidden">
                   <img
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-[filter] duration-500 group-hover:[filter:grayscale(0%)]"
                     style={{ filter: "grayscale(20%)" }}
                     src={p.image}
                     alt={`Capa do projeto ${p.title}, em ${p.location}`}
                   />
-                  <div className="absolute top-4 left-4 font-label-caps text-label-caps text-on-primary bg-primary-container px-2 py-1">
+                  <div className="absolute top-4 left-4 font-label-caps text-label-caps text-on-primary bg-primary-container px-2 py-1 z-10">
                     {p.index}
                   </div>
+                  {/* Animated outline frame */}
+                  <div
+                    aria-hidden
+                    className="absolute inset-3 md:inset-4 border border-white/0 group-hover:border-white/95 group-focus-visible:border-white/95 scale-90 group-hover:scale-100 group-focus-visible:scale-100 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-500 ease-out pointer-events-none"
+                  />
                 </div>
                 <div className="h-[70px] flex flex-col justify-center px-6 border-t border-outline-variant bg-surface-container-lowest">
                   <h3 className="font-headline-md text-[14px] uppercase tracking-[0.1em] text-on-surface mb-1">
@@ -130,7 +108,7 @@ export default function Projects() {
                     {p.location}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -165,7 +143,7 @@ export default function Projects() {
               </button>
             </div>
             <span className="font-label-caps text-label-caps tracking-[0.25em] text-on-surface-variant uppercase">
-              01 - 0{PROJECTS.length}
+              01 - {String(PROJECTS.length).padStart(2, "0")}
             </span>
           </div>
           <Link className="group flex items-center gap-3" to="/projetos">
