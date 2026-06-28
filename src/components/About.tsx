@@ -36,7 +36,7 @@ export default function About() {
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                 style={{ filter: "grayscale(15%) sepia(8%) contrast(1.05)" }}
                 src={PORTRAIT}
-                alt="Retrato profissional de Sandra da Rocha, arquiteta especialista em reformas residenciais."
+                alt="Retrato profissional de Sandra da Rocha, arquiteta especialista em reformas e projetos arquitetônicos."
               />
             </div>
           </div>
@@ -50,10 +50,11 @@ export default function About() {
           >
             {/* Title */}
             <h2 className="font-display-lg text-[32px] md:text-[44px] leading-[1.15] tracking-[0.04em] text-on-surface mb-10 max-w-[95%] uppercase">
-              ARQUITETURA COMO LINGUAGEM DE QUEM{" "}
+              ARQUITETURA QUE NASCE DE QUEM{" "}
               <span className="text-primary-container border-b border-primary-container pb-1 inline-block">
-                HABITA
-              </span>
+                USA
+              </span>{" "}
+              O ESPAÇO
             </h2>
 
             {/* Body */}
@@ -61,24 +62,29 @@ export default function About() {
               <p className="leading-[1.8]">
                 Formada pela{" "}
                 <strong className="font-medium">UNISINOS/RS</strong> em 1998,
-                sou especialista em{" "}
+                sou arquiteta com{" "}
                 <strong className="font-medium">
-                  transformar apartamentos antigos em lares atuais
+                  especialidade em reformas
                 </strong>
-                , preservando o que eles têm de melhor.
+                : apartamentos, casas e também projetos comerciais como
+                clínicas, escritórios e advocacias. Por trás da prancheta,
+                também atuo como corretora de imóveis, o que me deu um olhar
+                técnico apurado sobre o que cada espaço pode (e não pode)
+                virar.
               </p>
               <p className="leading-[1.8]">
-                Quase três décadas ajudando proprietários a reformar imóveis
-                sem perder a alma do espaço. Trabalho do diagnóstico inicial à
-                última peça de mobiliário, em cozinhas, banheiros, salas e
-                apartamentos inteiros, costurando projeto, interiores e
-                execução em um único fio condutor.
+                Quase três décadas costurando projeto, interiores e execução
+                em um único fio condutor. Do diagnóstico inicial à última
+                peça de mobiliário, conduzo a obra inteira para que o cliente
+                não precise lidar com fornecedores, prazos ou imprevistos. O
+                combinado é simples: você me descreve a vida que quer ter no
+                espaço, e eu faço acontecer.
               </p>
               <p className="leading-[1.8]">
-                Acredito em ambientes que envelhecem com elegância, que
-                respeitam quem os usa, e que carregam histórias muito além da
-                estética. Em uma reforma, a história começa antes da gente
-                chegar, e o trabalho é preservar o que vale a pena e atualizar
+                Acredito em ambientes que envelhecem com elegância, respeitam
+                quem os usa e carregam histórias além da estética. Seja uma
+                reforma de apartamento, uma sala comercial nova ou um projeto
+                do zero, o método é o mesmo: preservar o que vale, atualizar
                 o que precisa.
               </p>
             </div>

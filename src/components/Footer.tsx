@@ -17,9 +17,10 @@ export default function Footer() {
         <nav className="flex flex-wrap gap-6 md:gap-8 justify-center">
           <a
             className="font-label-caps text-label-caps tracking-[0.25em] text-on-surface-variant hover:text-primary-container transition-colors uppercase"
-            href="https://instagram.com"
+            href="https://instagram.com/arqsandradarocha"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            aria-label="Instagram da Sandra · @arqsandradarocha"
           >
             INSTAGRAM
           </a>

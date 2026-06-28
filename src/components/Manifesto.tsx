@@ -48,12 +48,12 @@ export default function Manifesto() {
 
           {/* Paragraph */}
           <p className="font-body-lg text-body-lg text-on-background/85 mb-14 md:mb-16 max-w-[640px]">
-            Acredito que a arquitetura deve falar por si, especialmente em
-            reformas, onde o desafio é maior e o resultado precisa parecer
-            inevitável. Reformo apartamentos antigos preservando o que eles têm
-            de melhor: pela clareza das formas, pela honestidade dos materiais
-            e pela intuição do uso. Sem discursos complexos, sem demolir o que
-            faz sentido, apenas atualizando o que precisa.
+            Acredito que a arquitetura deve falar por si, seja na reforma de
+            um apartamento, no projeto de uma clínica ou no desenho de uma
+            casa nova. O resultado precisa parecer inevitável: pela clareza
+            das formas, pela honestidade dos materiais, pela intuição do uso.
+            Sem discursos complexos, sem demolir o que faz sentido, apenas
+            atualizando o que precisa.
           </p>
 
           {/* Pillars */}

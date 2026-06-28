@@ -10,7 +10,7 @@ export default function FinalCTA() {
 
   const openWhatsapp = () => {
     const msg = encodeURIComponent(
-      "Olá Sandra! Tenho interesse em conversar sobre arquitetura."
+      "Olá Sandra! Tenho interesse em conversar sobre um projeto."
     );
     window.open(`https://wa.me/${PHONE}?text=${msg}`, "_blank");
   };
@@ -39,7 +39,7 @@ export default function FinalCTA() {
           <div className="flex-1 flex flex-col justify-center max-w-xl pt-12 md:pt-0">
             {/* Headline */}
             <h2 className="font-display-lg text-[36px] md:text-[44px] leading-[1.1] tracking-[0.04em] text-on-primary-container mb-8 uppercase font-normal">
-              SUA PRÓXIMA REFORMA COMEÇA COM UMA{" "}
+              SEU PRÓXIMO PROJETO COMEÇA COM UMA{" "}
               <span className="text-white border-b border-white pb-1 inline-block">
                 CONVERSA.
               </span>
@@ -47,9 +47,9 @@ export default function FinalCTA() {
 
             {/* Supporting text */}
             <p className="font-body-lg text-body-lg text-on-primary-container/90 mb-12 max-w-md">
-              Não importa se você acabou de assumir as chaves ou se mora ali
-              há anos. Transformar um apartamento em algo atual sem perder o
-              que ele tem de melhor é o que faço melhor. A primeira conversa é
+              Reforma de apartamento, projeto de uma clínica, design de um
+              escritório novo, casa do zero. O ponto de partida é sempre o
+              mesmo: uma conversa pra entender o que você quer. A primeira é
               gratuita, sem compromisso.
             </p>
 

@@ -41,10 +41,10 @@ export default function Reforma() {
             , SEM APAGAR.
           </h2>
           <p className="font-body-lg text-body-lg text-on-surface/85 max-w-[520px] leading-[1.7]">
-            Reformar não é apagar a história do apartamento. É reconhecer o
-            que ele tem de melhor, ajustar o que não funciona mais e
-            devolvê-lo atualizado, com a alma intacta. Cada reforma é um
-            recomeço, sem precisar começar do zero.
+            Reformar não é apagar a história do espaço. É reconhecer o que
+            ele tem de melhor, ajustar o que não funciona mais e devolvê-lo
+            atualizado, com a alma intacta. Cada reforma é um recomeço, sem
+            precisar começar do zero.
           </p>
         </div>
 
