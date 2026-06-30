@@ -34,6 +34,18 @@ import projeto6g2 from "../Projetos/Projetos 6/Projeto 6 (2).png";
 import projeto6g3 from "../Projetos/Projetos 6/Projeto 6 (3).png";
 import projeto6g4 from "../Projetos/Projetos 6/Projeto 6 (4).png";
 
+// Projeto 7 — Honda Motolife
+import projeto7Cover from "../Projetos/Projeto 7 HONDA/Projeto 7 Capa, imagem 1.png";
+import projeto7g2 from "../Projetos/Projeto 7 HONDA/Projeto 7.png";
+import projeto7g3 from "../Projetos/Projeto 7 HONDA/Projeto 7 (2).png";
+import projeto7g4 from "../Projetos/Projeto 7 HONDA/Projeto 7 (3).png";
+
+// Projeto 8 — Apê Centro
+import projeto8Cover from "../Projetos/Projeto 8 APÊ completo/Capa Apê completo.png";
+import projeto8g2 from "../Projetos/Projeto 8 APÊ completo/Projeto 8 (2).png";
+import projeto8g3 from "../Projetos/Projeto 8 APÊ completo/Projeto 8 (5).png";
+import projeto8g4 from "../Projetos/Projeto 8 APÊ completo/Projeto 8 (7).png";
+
 export type ProjectCategory = "residencial" | "interiores" | "comercial";
 
 export type ProjectCategoryFilter = "todos" | ProjectCategory;
@@ -91,6 +103,42 @@ export const PROJECTS: Project[] = [
     ],
     cover: projeto2Cover,
     gallery: [projeto2g2, projeto2g3, projeto2g4],
+  },
+  {
+    slug: "honda-motolife",
+    title: "HONDA MOTOLIFE",
+    subtitle: "Reforma de Concessionária Comercial",
+    location: "Porto Alegre · RS",
+    city: "Porto Alegre, RS",
+    year: "2025",
+    category: "comercial",
+    client: "Concessionária Honda",
+    status: "Concluído",
+    description: [
+      "A Motolife é uma concessionária Honda em Porto Alegre que precisava reposicionar sua imagem para atrair um público mais exigente e reforçar a solidez da marca em uma das principais avenidas da cidade. A reforma trabalhou fachada e showroom como uma única peça de comunicação visual, transformando o ponto comercial em vitrine 24 horas.",
+      "A fachada ganhou volumes brancos com curvatura suave no topo, sinalização Honda e Motolife em destaque sobre fundo neutro, e grandes panos de vidro que abrem o interior para a rua. A iluminação noturna foi pensada para que a loja chame atenção mesmo com a avenida vazia — spots embutidos sob a marquise, luz fria interna e detalhes em vermelho que reforçam a identidade da marca.",
+      "Internamente, o showroom foi reorganizado em dois níveis para ampliar a exposição. O piso porcelanato claro reflete a iluminação e amplia visualmente o espaço; o mezanino com escada metálica branca adiciona uma camada extra de produtos; nichos para capacetes e acessórios receberam destaque próprio com prateleiras em madeira clara. O resultado é uma loja que comunica modernidade, organização e confiança antes mesmo do cliente entrar.",
+    ],
+    cover: projeto7Cover,
+    gallery: [projeto7g2, projeto7g3, projeto7g4],
+  },
+  {
+    slug: "ape-centro-poa",
+    title: "APÊ CENTRO",
+    subtitle: "Reforma Completa de Apartamento",
+    location: "Centro · Porto Alegre · RS",
+    city: "Porto Alegre, RS",
+    year: "2025",
+    category: "interiores",
+    client: "Família residente",
+    status: "Concluído",
+    description: [
+      "O Apê Centro é a reforma completa de um apartamento no coração de Porto Alegre. O ponto de partida foi um imóvel com bom potencial mas linguagem datada — o desafio era ressignificar cada ambiente sem perder a alma do edifício, preservando o piso original em parquet onde fazia sentido e modernizando o restante com uma identidade contemporânea unificada.",
+      "A paleta combina três camadas que dialogam em todos os ambientes: madeira natural (tanto o parquet original restaurado quanto ripados verticais novos), branco off-white na marcenaria de armários e closet, e mármore preto Saint Laurent na bancada do lavabo. Detalhes em metal dourado nas torneiras, luminárias e puxadores trazem o luxo discreto que o cliente buscava, sem cair no exagero.",
+      "Os destaques são três. O lavabo, com espelho redondo retroiluminado sobre painel ripado de madeira e bancada em pedra escura, virou o ambiente mais fotografado da casa. O closet planejado, com iluminação LED embutida nas gavetas e nichos abertos para coleções, organiza a rotina sem esconder identidade. E a sala íntima, com painel cenográfico de nichos iluminados que serve como porta de acesso a outro ambiente, é a prova de que marcenaria bem pensada substitui qualquer obra de arte.",
+    ],
+    cover: projeto8Cover,
+    gallery: [projeto8g2, projeto8g3, projeto8g4],
   },
   {
     slug: "banheiro-compacto-natural",

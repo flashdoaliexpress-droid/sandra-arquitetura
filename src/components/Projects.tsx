@@ -100,13 +100,10 @@ export default function Projects() {
                     className="absolute inset-3 md:inset-4 border border-white/0 group-hover:border-white/95 group-focus-visible:border-white/95 scale-90 group-hover:scale-100 group-focus-visible:scale-100 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-500 ease-out pointer-events-none"
                   />
                 </div>
-                <div className="h-[70px] flex flex-col justify-center px-6 border-t border-outline-variant bg-surface-container-lowest">
-                  <h3 className="font-headline-md text-[14px] uppercase tracking-[0.1em] text-on-surface mb-1">
+                <div className="h-[70px] flex items-center px-6 border-t border-outline-variant bg-surface-container-lowest">
+                  <h3 className="font-headline-md text-[14px] uppercase tracking-[0.1em] text-on-surface">
                     {p.title}
                   </h3>
-                  <span className="font-label-caps text-[10px] tracking-[0.2em] text-on-surface-variant uppercase">
-                    {p.location}
-                  </span>
                 </div>
               </Link>
             ))}

@@ -6,6 +6,7 @@ import About from "../components/About";
 import Manifesto from "../components/Manifesto";
 import Projects from "../components/Projects";
 import Reforma from "../components/Reforma";
+import Atuacao from "../components/Atuacao";
 import Services from "../components/Services";
 import Banner from "../components/Banner";
 import Testimonials from "../components/Testimonials";
@@ -44,6 +45,7 @@ export default function Home() {
         <Banner />
         <Projects />
         <Reforma />
+        <Atuacao />
         <Testimonials />
         <FinalCTA />
       </main>
