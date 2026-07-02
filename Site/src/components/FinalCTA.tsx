@@ -1,4 +1,4 @@
-import imagemCTAFinal from "../assets/IMAGEM CTA FINAL (2).png";
+import imagemCTAFinal from "../assets/IMAGEM CTA FINAL.png";
 import { useInView } from "../hooks/useInView";
 
 const CTA_IMAGE = imagemCTAFinal;

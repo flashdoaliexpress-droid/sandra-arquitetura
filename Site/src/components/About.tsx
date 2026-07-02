@@ -1,4 +1,4 @@
-import imagemSobre from "../assets/Imagem SOBRE (2).png";
+import imagemSobre from "../assets/Imagem SOBRE.png";
 import { useInView } from "../hooks/useInView";
 
 const PORTRAIT = imagemSobre;
