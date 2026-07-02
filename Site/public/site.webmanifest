@@ -1,0 +1,22 @@
+{
+  "name": "Sandra da Rocha Arquitetura",
+  "short_name": "Sandra Arquitetura",
+  "description": "Arquiteta em Porto Alegre — reformas, projetos residenciais e comerciais.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#c65f3e",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

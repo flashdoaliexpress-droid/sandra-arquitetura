@@ -14,6 +14,7 @@ export default function Banner() {
         src={banner}
         alt="Interior de apartamento reformado pela Sandra, com luz natural e mobiliário sob medida."
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
       />
 

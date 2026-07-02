@@ -1,59 +1,104 @@
-import { useState, useEffect } from "react";
-import heroImg1Desktop from "../assets/Hero - Imagem 1 desktop.png";
-import heroImg1Mobile from "../assets/Hero - Imagem 1 mobile.png";
-import heroImg2Desktop from "../assets/Hero - Imagem 2 desktop.png";
-import heroImg2Mobile from "../assets/Hero - Imagem 2 mobile.png";
-import heroImg3Desktop from "../assets/Hero - Imagem 3 desktop.png";
-import heroImg3Mobile from "../assets/Hero - Imagem 3 mobile.png";
+import { useEffect, useState } from "react";
+import heroImg1DesktopPng from "../assets/Hero - Imagem 1 desktop.png";
+import heroImg1DesktopWebp from "../assets/Hero - Imagem 1 desktop.webp";
+import heroImg1MobilePng from "../assets/Hero - Imagem 1 mobile.png";
+import heroImg1MobileWebp from "../assets/Hero - Imagem 1 mobile.webp";
+import heroImg2DesktopPng from "../assets/Hero - Imagem 2 desktop.png";
+import heroImg2DesktopWebp from "../assets/Hero - Imagem 2 desktop.webp";
+import heroImg2MobilePng from "../assets/Hero - Imagem 2 mobile.png";
+import heroImg2MobileWebp from "../assets/Hero - Imagem 2 mobile.webp";
+import heroImg3DesktopPng from "../assets/Hero - Imagem 3 desktop.png";
+import heroImg3DesktopWebp from "../assets/Hero - Imagem 3 desktop.webp";
+import heroImg3MobilePng from "../assets/Hero - Imagem 3 mobile.png";
+import heroImg3MobileWebp from "../assets/Hero - Imagem 3 mobile.webp";
 import logoHero from "../Logo/Hero/Logo principal - Hero.png";
 
-const HERO_IMAGES = [
+type HeroSlide = {
+  desktopWebp: string;
+  desktopPng: string;
+  mobileWebp: string;
+  mobilePng: string;
+  alt: string;
+};
+
+const HERO_SLIDES: HeroSlide[] = [
   {
-    desktop: heroImg1Desktop,
-    mobile: heroImg1Mobile,
+    desktopWebp: heroImg1DesktopWebp,
+    desktopPng: heroImg1DesktopPng,
+    mobileWebp: heroImg1MobileWebp,
+    mobilePng: heroImg1MobilePng,
+    alt: "Interior arquitetônico iluminado pela luz dourada da hora do anoitecer, com janelas altas projetando sombras geométricas sobre piso de pedra polida.",
   },
   {
-    desktop: heroImg2Desktop,
-    mobile: heroImg2Mobile,
+    desktopWebp: heroImg2DesktopWebp,
+    desktopPng: heroImg2DesktopPng,
+    mobileWebp: heroImg2MobileWebp,
+    mobilePng: heroImg2MobilePng,
+    alt: "Ambiente residencial com integração fluida entre cozinha e sala, marcado por materiais naturais e luz natural cruzada.",
   },
   {
-    desktop: heroImg3Desktop,
-    mobile: heroImg3Mobile,
+    desktopWebp: heroImg3DesktopWebp,
+    desktopPng: heroImg3DesktopPng,
+    mobileWebp: heroImg3MobileWebp,
+    mobilePng: heroImg3MobilePng,
+    alt: "Detalhe arquitetônico contemporâneo com paleta neutra, tipografia de linhas retas e mobiliário sob medida.",
   },
 ];
 
-export default function Hero() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+const ROTATE_MS = 5000;
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+export default function Hero() {
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000);
+      setActive((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, ROTATE_MS);
     return () => clearInterval(interval);
   }, []);
-
-  const currentImage = isMobile
-    ? HERO_IMAGES[currentImageIndex].mobile
-    : HERO_IMAGES[currentImageIndex].desktop;
 
   return (
     <section
       id="hero"
       className="relative w-full h-screen min-h-[600px] flex flex-col overflow-hidden bg-surface-variant"
     >
-      <div
-        className="absolute inset-0 w-full h-full z-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
-        style={{ backgroundImage: `url('${currentImage}')` }}
-        role="img"
-        aria-label="Interior arquitetônico iluminado pela luz dourada da hora do anoitecer, com janelas altas projetando sombras geométricas sobre piso de pedra polida."
-      />
+      {/* Background carousel — crossfade between slides */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {HERO_SLIDES.map((slide, i) => {
+          const isFirst = i === 0;
+          return (
+            <picture
+              key={i}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
+                i === active ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <source
+                media="(max-width: 767px)"
+                srcSet={slide.mobileWebp}
+                type="image/webp"
+              />
+              <source
+                media="(max-width: 767px)"
+                srcSet={slide.mobilePng}
+                type="image/png"
+              />
+              <source srcSet={slide.desktopWebp} type="image/webp" />
+              <source srcSet={slide.desktopPng} type="image/png" />
+              <img
+                src={slide.desktopPng}
+                alt={isFirst ? slide.alt : ""}
+                aria-hidden={isFirst ? undefined : true}
+                fetchPriority={isFirst ? "high" : "low"}
+                loading={isFirst ? "eager" : "eager"}
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </picture>
+          );
+        })}
+      </div>
+
       {/* Top gradient for navbar legibility */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/35 to-transparent z-10" />
 
@@ -63,6 +108,7 @@ export default function Hero() {
           src={logoHero}
           alt="Logo Sandra"
           className="h-14 md:h-16 w-auto object-contain"
+          decoding="async"
         />
       </div>
 

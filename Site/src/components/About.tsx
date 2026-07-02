@@ -37,6 +37,8 @@ export default function About() {
                 style={{ filter: "grayscale(15%) sepia(8%) contrast(1.05)" }}
                 src={PORTRAIT}
                 alt="Retrato profissional de Sandra da Rocha, arquiteta especialista em reformas e projetos arquitetônicos."
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

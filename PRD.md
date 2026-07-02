@@ -1,263 +1,286 @@
 # PRD — Site Sandra Arquitetura & Design de Interiores
 
-**Versão:** 1.0  
-**Data:** 2026-06-21  
-**Produto:** Site institucional de apresentação (MVP — 3 seções)
+**Versão:** 2.0
+**Data:** 2026-07-02
+**Produto:** Site institucional + portfólio (React SPA)
+**Status:** Em produção
 
 ---
 
 ## 1. Visão do Produto
 
-Site institucional minimalista e sofisticado para Sandra, arquiteta e designer de interiores com 28 anos de experiência, formada pela UNISINOS/RS. O objetivo principal é converter visitantes em leads qualificados, transmitindo autoridade, sensibilidade estética e confiança antes do primeiro contato.
+Site institucional para Sandra da Rocha, arquiteta formada pela UNISINOS/RS em 1998, com 28+ anos atuando em reformas residenciais, projetos arquitetônicos e obras comerciais. Base em Porto Alegre / RS, com especialidade declarada em **apartamentos do Centro Histórico de POA** e atendimento em todo o Brasil.
 
-**Posicionamento:** "Do sonho ao projeto realizado — com quem tem 28 anos fazendo isso acontecer."
+O objetivo é converter visitantes em conversas via WhatsApp, transmitindo autoridade técnica, sensibilidade estética e a promessa de acompanhamento integral ("do sonho à entrega, sem dor de cabeça").
 
-**Premissas:**
-- Site de uma única página (single-page) com scroll suave entre seções
-- Visual limpo, tipografia elegante, paleta neutra com acentos sofisticados
-- Sem backend — estado gerenciado via `localStorage` onde necessário
-- Mobile-first, responsivo
-- Sem frameworks pesados — HTML, CSS e JS vanilla (ou React mínimo, a definir)
+**Posicionamento:** "Arquitetura autoral, atemporal e presente — quem contrata a Sandra não contrata um projeto, contrata uma obra sem dor de cabeça."
+
+**Voz da marca:** Sóbria, confiante, direta. Sem jargão. Frases curtas. Terracota como acento único sobre paleta neutra.
 
 ---
 
-## 2. Personas
+## 2. Stack Técnica
 
-### Persona 1 — Camila, 34 anos (Primário)
-- **Perfil:** Casada, renda familiar ~R$15k/mês, acabou de comprar apartamento na planta
-- **Dor:** Não sabe por onde começar o projeto; tem referências no Pinterest mas não sabe aplicar
-- **Objetivo:** Contratar alguém que "cuide de tudo" e entregue um resultado bonito e funcional
-- **Comportamento:** Pesquisa no Instagram e Google, consulta indicações de amigos
-- **Momento no site:** Chega pela bio do Instagram ou por indicação; quer sentir que "essa é a arquiteta certa"
-
-### Persona 2 — Roberto, 52 anos (Secundário)
-- **Perfil:** Empresário, quer reformar escritório ou casa de campo
-- **Dor:** Já foi lesado por construtora anterior; quer acompanhamento próximo
-- **Objetivo:** Alguém experiente que supervisione e coordene tudo, inclusive compra de materiais
-- **Comportamento:** Pesquisa no Google, valoriza currículum e anos de experiência
-- **Momento no site:** Lê a seção "Sobre" com atenção; quer ver credenciais
-
-### Persona 3 — Letícia, 28 anos (Terciário)
-- **Perfil:** Alugou primeiro apartamento, orçamento limitado
-- **Dor:** Quer decoração bonita mas não sabe como escolher móveis e acabamentos com o dinheiro que tem
-- **Objetivo:** Consultoria pontual sem necessidade de contratar projeto completo
-- **Comportamento:** Consome conteúdo no TikTok/Instagram, preço é fator
-- **Momento no site:** Seção "Como posso realizar seu sonho" — descobre que consultoria é uma opção
+- **Framework:** React 18 + TypeScript + Vite
+- **Roteamento:** react-router-dom (SPA multi-rota)
+- **Estilo:** Tailwind CSS com design tokens custom (`primary-container`, `on-surface`, `outline-variant`, `container-max`, `margin-mobile/desktop`, `gutter`, `font-display-lg`, `font-body-lg`, `font-label-caps`, `font-headline-md`)
+- **Ícones:** Material Symbols Outlined (font)
+- **Persistência local:** `localStorage` via `useLocalStorage` (último projeto visitado, tracking de visita)
+- **Hooks custom:** `useInView` (animações fade-up/fade-in ao entrar no viewport), `useScrolled` (troca de estado da navbar), `useVisitTracker`
+- **Assets:** PNG/JPG servidos como imports Vite; vídeo `antes-depois.mp4` embutido
+- **Deploy:** repositório na raiz `Site/`, publicado via GitHub
 
 ---
 
-## 3. Funcionalidades Detalhadas por Tela
+## 3. Rotas
+
+| Rota | Componente | Descrição |
+|---|---|---|
+| `/` | `Home` | Landing completa (todas as seções abaixo) |
+| `/sobre` | `Home` | Home + scroll automático para âncora `#sobre` |
+| `/manifesto` | `Home` | Home + scroll para `#manifesto` |
+| `/servicos` | `Home` | Home + scroll para `#servicos` |
+| `/contato` | `Home` | Home + scroll para `#contato` (FinalCTA) |
+| `/projetos` | `ProjectsList` | Grade de projetos com filtro por categoria |
+| `/projetos/:slug` | `ProjectDetail` | Página individual do projeto |
+| `*` | Redirect para `/` | 404 → home |
 
 ---
 
-### Tela 1 — Hero Section
+## 4. Estrutura da Home (ordem de renderização)
 
-**Objetivo:** Impacto visual imediato + identidade da marca + acesso rápido ao contato.
-
-#### Componentes:
-
-| Componente | Descrição |
-|---|---|
-| Background | Foto de projeto real (alta resolução, ocupação de 100vh). Overlay escuro sutil (rgba 0,0,0,0.35) para legibilidade |
-| Navbar | Posição: `fixed`, transparente sobre o hero. Logo à esquerda (sem fundo, formato SVG/PNG com transparência). Links à direita: Sobre, Serviços, Contato. Navbar muda para fundo sólido (branco ou dark) ao scrollar 80px |
-| Logo | Nome "Sandra [Sobrenome]" em tipografia serif elegante ou logotipo customizado. Cor branca no hero, cor da marca após scroll |
-| Headline | Tagline principal centralizada sobre a imagem. Ex: "Arquitetura que transforma espaços em experiências" |
-| Subheadline | Frase de suporte curta. Ex: "28 anos realizando projetos com excelência" |
-| CTA primário | Botão "Fale comigo" — ancora para seção Contato ou abre WhatsApp direto |
-| Scroll indicator | Ícone animado de seta/chevron no rodapé do hero indicando scroll |
-
-#### Regras:
-- Logo deve ser visível tanto sobre imagem escura quanto sobre fundo branco (duas versões ou SVG adaptável)
-- Navbar em mobile colapsa em hamburguer menu
-- Imagem de fundo é substituível via variável CSS ou atributo `data-hero-image` (fácil troca sem tocar JS)
-- CTA do WhatsApp usa número formatado: `https://wa.me/55XXXXXXXXXXX?text=...`
+1. **Navbar** (fixed)
+2. **Hero**
+3. **About** — âncora `#sobre`
+4. **Manifesto** — âncora `#manifesto`
+5. **Services** — âncora `#servicos`
+6. **Banner** (full-bleed)
+7. **Projects** — âncora `#projetos` (carrossel)
+8. **Reforma** — âncora `#reforma` (split vídeo antes/depois)
+9. **Atuacao** — âncora `#atuacao` (residencial × comercial + banda de acompanhamento)
+10. **Testimonials** — âncora `#depoimentos`
+11. **FinalCTA** — âncora `#contato`
+12. **Footer** — âncora `#rodape`
 
 ---
 
-### Tela 2 — About Section
+## 5. Seções — Especificação Detalhada
 
-**Objetivo:** Construir confiança e conexão pessoal com Sandra.
+### 5.1 Navbar
+- Fixed, transparente sobre o hero, muda para `bg-background` após 80px de scroll (`useScrolled`)
+- Logo esquerda (aparece somente quando scrollado)
+- Links centro: **SOBRE · PROJETOS · SERVIÇOS · CONTATO** (react-router `<Link>`)
+- Telefone direita (desktop): `+55 51 81 14 9971`
+- Mobile: hamburger que expande menu vertical com telefone abaixo
+- Estado ativo destacado em terracota (`text-primary-container`)
 
-#### Layout:
-- **Desktop:** Grid de 2 colunas — esquerda: foto de Sandra; direita: texto + credenciais
-- **Mobile:** Coluna única — foto > texto > credenciais
+### 5.2 Hero
+- Altura: `100vh` (min 600px)
+- Carrossel automático de 3 imagens (5s cada), com versões desktop e mobile separadas (`Hero - Imagem 1/2/3 desktop|mobile.png`)
+- Gradiente escuro no topo para legibilidade da navbar
+- Logo Hero grande no canto superior esquerdo
+- Headline: **"ARQUITETURA / AUTORAL"** (display-lg, uppercase, tracking amplo)
+- Meta desktop bottom-right: **"EST. 1997"**
 
-#### Componentes:
+### 5.3 About (`#sobre`)
+- Layout: split 50/50 (retrato à esquerda, texto à direita)
+- Marca d'água "S" gigante ao fundo (opacity 0.05)
+- Retrato profissional de Sandra em moldura outline
+- Título: **"ARQUITETURA QUE NASCE DE QUEM USA O ESPAÇO"**
+- 3 parágrafos de biografia:
+  1. UNISINOS/RS 1998, especialidade em reformas + comercial, também atua como corretora
+  2. 28 anos costurando projeto/interiores/execução em um único fio condutor
+  3. Filosofia: ambientes que envelhecem com elegância
+- Ficha: **Sandra da Rocha · Arquiteta · UNISINOS/RS 1998**
+- Stats textuais (não animadas): **28+ anos · 150+ projetos · 100% clientes satisfeitos**
+- CTA: **"VAMOS CONVERSAR"** → âncora `#servicos`
 
-| Componente | Descrição |
-|---|---|
-| Foto de Sandra | Imagem profissional, retrato ou 3/4 corpo. Border-radius sutil ou recorte criativo |
-| Título da seção | "Quem sou eu" ou "Sobre Sandra [Sobrenome]" |
-| Texto biográfico | 2–3 parágrafos: apresentação pessoal, filosofia de trabalho, o que a diferencia |
-| Credenciais (Stats) | 3–4 itens em linha: ícone + número em destaque + label. Ver detalhes abaixo |
-| Formação | "Formada pela UNISINOS/RS" — pode aparecer como badge ou texto inline |
+### 5.4 Manifesto (`#manifesto`)
+- Layout: split 60/40 (texto esquerda, imagem direita full-bleed em desktop)
+- Headline: **"PROJETO BOM É AQUELE QUE VOCÊ NÃO PRECISA EXPLICAR."**
+- Parágrafo sobre arquitetura falar por si
+- 3 pilares em colunas: **AUTORAL · ATEMPORAL · PRESENTE**
+- CTA: **"QUERO ENTENDER MELHOR"**
 
-#### Credenciais (Stats):
+### 5.5 Services (`#servicos`)
+- Fundo `bg-primary-container` (terracota)
+- Título: **"COMO POSSO TRANSFORMAR SEU ESPAÇO?"**
+- Grid de 6 serviços (3 colunas em desktop, 2 em tablet, 1 em mobile):
+  | # | Ícone (Material) | Título | Descrição |
+  |---|---|---|---|
+  | 01 | `architecture` | PROJETO DE REFORMA | Plantas, técnico e documentação para reformar apto/casa/clínica/escritório com RT |
+  | 02 | `domain` | PROJETO ARQUITETÔNICO | Construção do zero, do partido à entrega das chaves com RT |
+  | 03 | `chair` | DESIGN DE INTERIORES | Cor, textura, mobiliário e luz como um só |
+  | 04 | `engineering` | ACOMPANHAMENTO DE OBRA | Visitas técnicas e gestão para o projeto sair como desenhado |
+  | 05 | `home_work` | CONSULTORIA DE IMÓVEL | Avaliação técnica antes da compra; olho duplo arquiteta + corretora |
+  | 06 | `assignment` | GERENCIAMENTO DE OBRA | Coordenação de equipes, prazos, materiais e orçamento |
+- Card de diferencial regional (full-width, `bg-on-surface`): **"ESPECIALISTA EM APARTAMENTOS DO CENTRO DE POA"** com watermark do ícone `apartment` e nota "atuação presencial em POA / projetos atendidos em todo o Brasil"
 
-```
-┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
-│      28+        │      150+       │        3        │      100%       │
-│  Anos de        │  Projetos       │  Prêmios        │  Clientes       │
-│  Experiência    │  Realizados     │  [a confirmar]  │  Satisfeitos    │
-└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
-```
-> **Nota:** Números a serem confirmados com Sandra antes da publicação. Placeholder no PRD.
+### 5.6 Banner
+- Full-bleed com imagem `Banner.png` + gradiente escuro
+- Eyebrow: **"O QUE VOCÊ GANHA COMIGO"**
+- Headline: **"VOCÊ NÃO CONTRATA UM PROJETO. CONTRATA UMA OBRA SEM DOR DE CABEÇA."**
+- Subheadline sobre acompanhamento do diagnóstico à última almofada
 
-#### Regras:
-- Stats animam (counter de 0 até o valor final) quando a seção entra no viewport — via `IntersectionObserver`
-- Texto biográfico deve ser editável via `data-` attributes ou variável JS centralizada (não hardcoded inline)
-- Foto deve ter `alt` descritivo para acessibilidade e SEO
+### 5.7 Projects (`#projetos`) — Carrossel
+- Faixa terracota horizontal cruzando o meio da seção
+- Título: **"OBRAS QUE FALAM POR SI."**
+- Contador: **"08 PROJETOS"**
+- Carrossel horizontal com snap, cards `280×373px` (aspect 3/4)
+- Cada card: capa + badge de índice + título + moldura branca animada no hover
+- Controles prev/next + link **"VER PORTFÓLIO COMPLETO"** → `/projetos`
+
+### 5.8 Reforma (`#reforma`)
+- Split desktop: texto esquerda / vídeo direita (aspect 804×1144)
+- Headline: **"RECOMEÇAR, SEM APAGAR."**
+- Vídeo `antes-depois.mp4` autoplay muted quando entra no viewport
+- Badge sobre o vídeo: **"Antes, Depois"**
+
+### 5.9 Atuacao (`#atuacao`)
+- Título: **"RESIDENCIAL & COMERCIAL."**
+- Tabela em 2 colunas:
+  - **Residencial:** Reforma de aptos no Centro de POA · Cozinhas e banheiros · Casas novas · Design de interiores residencial
+  - **Comercial:** Clínicas e consultórios · Escritórios (advocacia, contabilidade, odontologia) · Salas comerciais · Comercial do zero
+- Banda inferior full-bleed terracota — **"EU CUIDO DE TUDO, DO PROJETO À ENTREGA"**
+- 4 itens de acompanhamento com ícones: obra do início ao fim · prazos · elétrica/hidráulica · móveis+luz+decor
+- Fecho: **"VOCÊ TEM ZERO ESTRESSE. EU RESOLVO TUDO."**
+
+### 5.10 Testimonials (`#depoimentos`)
+- Fundo neutro com aspas gigantes decorativas
+- Carrossel fade com 8 depoimentos reais (Hélio, Patricia Santos, Alexandre Pinto, Antonio Severo, Rodrigo Kalife, Inez Aso, Patrícia Inglez de Souza, Claudio Maciel)
+- Autoplay 3s, pausa em hover
+- Controles prev/next + dots
+- Link: **"Ver todas as avaliações no Google"** → `https://share.google/8XzOKPDnlV2CzNHmb`
+
+### 5.11 FinalCTA (`#contato`)
+- Split 50/50: imagem esquerda / bloco terracota direita
+- Headline: **"SEU PRÓXIMO PROJETO COMEÇA COM UMA CONVERSA."**
+- Texto: primeira conversa gratuita e sem compromisso
+- CTA branco: **"ME CHAME NO WHATSAPP"** → `https://wa.me/555181149971` com mensagem pré-preenchida
+- Rodapé de contato: **TELEFONE +55 51 81 14 9971 · LOCALIZAÇÃO Porto Alegre · RS · Brasil**
+
+### 5.12 Footer (`#rodape`)
+- Logo + links (Instagram `@arqsandradarocha`, LinkedIn, Pinterest, Privacidade) + copyright dinâmico
 
 ---
 
-### Tela 3 — Como posso realizar seu sonho?
+## 6. Página `/projetos` — ProjectsList
 
-**Objetivo:** Educar o visitante sobre o processo de trabalho e serviços oferecidos, reduzindo fricção para o contato.
-
-#### Conceito:
-Seção didática que mostra a jornada do cliente do zero até o projeto concluído. Cada serviço é um card ou step visual com ícone, título e descrição curta.
-
-#### Layout:
-- Título da seção centralizado com subtítulo explicativo
-- Grid de cards ou timeline horizontal/vertical responsiva
-- Cada card tem: ícone SVG + título + descrição 2–3 linhas
-- CTA ao final: "Qual etapa é a sua? Me conta." → abre formulário ou WhatsApp
-
-#### Serviços / Steps:
-
-| # | Ícone | Título | Descrição |
-|---|---|---|---|
-| 1 | 📐 | Projeto Arquitetônico | Plantas, fachadas, volumetria e documentação técnica para aprovação e execução |
-| 2 | 🛋️ | Design de Interiores | Definição de ambientes, paleta de cores, mobiliário, texturas e iluminação |
-| 3 | 🔨 | Acompanhamento na Execução | Visitas técnicas em obra para garantir que o projeto saia exatamente como planejado |
-| 4 | 🏠 | Consultoria para Compra de Imóvel | Avaliação técnica antes da compra: potencial, problemas estruturais, possibilidades |
-| 5 | 🧱 | Seleção de Materiais | Orientação na escolha de porcelanatos, revestimentos e acabamentos com melhor custo-benefício |
-| 6 | 🪑 | Curadoria de Móveis | Indicação de fornecedores e peças que combinam estética e durabilidade com o orçamento |
-| 7 | 💡 | Projeto de Iluminação | Planejamento de pontos de luz, tipos de lâmpada e efeitos que transformam o ambiente |
-| 8 | 🔍 | Consultoria Pontual | Para quem tem dúvidas específicas — orientação objetiva por hora/sessão sem contrato completo |
-
-> **Nota editorial:** Ícones SVG serão utilizados no lugar dos emojis na implementação final.
-
-#### Regras:
-- Cards revelam-se com animação fade-in-up staggered quando entram no viewport
-- Em mobile: grid de 1 coluna (cards empilhados)
-- Em tablet: grid de 2 colunas
-- Em desktop: grid de 3 ou 4 colunas (máx. 4)
-- Card ativo (hover/focus) eleva com `box-shadow` e bordas sutis
-- CTA final é fixo — não rola junto com os cards
+- Tabs de filtro (via query `?categoria=`):
+  - **TODOS · RESIDENCIAL · INTERIORES · COMERCIAL**
+- Grid responsivo (3/2/1 colunas)
+- Card com hover: overlay escuro deslizando de baixo com categoria + subtítulo + CTA "VER PROJETO"
+- Estado vazio para categorias sem projetos ("EM BREVE")
 
 ---
 
-## 4. Estrutura de Dados — localStorage
+## 7. Página `/projetos/:slug` — ProjectDetail
 
-O site é estático, mas o `localStorage` pode ser usado para:
-
-### `sandra_site_prefs`
-```json
-{
-  "theme": "light",
-  "cookiesAccepted": true,
-  "lastVisit": "2026-06-21T14:30:00Z"
-}
-```
-
-### `sandra_site_lead` *(se houver formulário inline futuramente)*
-```json
-{
-  "name": "",
-  "whatsapp": "",
-  "serviceInterest": "",
-  "submittedAt": ""
-}
-```
-
-> **Regra:** Dados em `localStorage` não substituem integração com CRM/backend — são apenas para UX (ex: não mostrar banner de cookies novamente, lembrar preferência de tema). Nenhum dado sensível persiste no client.
+- Layout split: sidebar sticky à esquerda + galeria vertical à direita
+- Sidebar contém: chip de categoria, título, subtítulo, ficha técnica (Localização, Ano, Área, Cliente, Status, Categoria), descrição em parágrafos, navegação Prev/Next
+- Galeria: capa + `gallery[]` empilhadas
+- `useLocalStorage` grava último projeto visto
+- Slug inválido → redirect para `/projetos`
 
 ---
 
-## 5. Regras do Projeto
+## 8. Catálogo de Projetos (8 publicados)
+
+| # | Slug | Título | Cidade | Categoria |
+|---|---|---|---|---|
+| 1 | `casa-aurum` | CASA AURUM | Lago Sul, DF | interiores |
+| 2 | `sala-jardim-de-luz` | APÊ JARDIM DE LUZ | São Paulo, SP | interiores |
+| 3 | `honda-motolife` | HONDA MOTOLIFE | Bento Gonçalves, RS | comercial |
+| 4 | `ape-centro-poa` | APÊ CENTRO (Edifício Catedral) | Porto Alegre, RS | interiores |
+| 5 | `banheiro-compacto-natural` | BANHEIRO COMPACTO NATURAL | São Paulo, SP | interiores |
+| 6 | `white-smile-clinic` | WHITE SMILE CLINIC | Porto Alegre, RS | comercial |
+| 7 | `escritorio-linear-operacional` | ESCRITÓRIO LINEAR OPERACIONAL | Porto Alegre, RS | comercial |
+| 8 | `casa-horizonte-branco` | CASA HORIZONTE BRANCO | Porto Alegre, RS | residencial |
+
+Dados centralizados em `Site/src/projects/data.ts`. Slugs são estáveis (não alterar sem redirecionar).
+
+---
+
+## 9. Contato & Marca
+
+- **Telefone / WhatsApp:** +55 51 81 14 9971 (`555181149971`)
+- **Instagram:** [@arqsandradarocha](https://instagram.com/arqsandradarocha)
+- **Google Reviews:** https://share.google/8XzOKPDnlV2CzNHmb
+- **Base:** Porto Alegre / RS · atendimento em todo o Brasil
+- **Assinatura:** Sandra da Rocha · Arquiteta · UNISINOS/RS 1998
+
+---
+
+## 10. Regras Gerais
 
 ### Design
-- Paleta principal: tons neutros (off-white, cinza, preto) + 1 cor de acento sofisticada (ex: terracota, sage green, ou dourado) — a definir com Sandra
-- Tipografia: serif para headings (ex: Playfair Display, Cormorant Garamond), sans-serif para corpo (ex: Inter, DM Sans)
-- Espaçamento generoso — "o espaço em branco é luxo"
-- Sem bordas pesadas, sem sombras exageradas
-- Imagens sempre de alta qualidade; nenhuma foto de stock genérica
+- Paleta: neutros (background off-white, on-surface escuro) + acento único **terracota** (`primary-container`)
+- Tipografia: display serif em uppercase com tracking amplo (~0.04em); body em sans-serif com leading generoso; labels em uppercase com tracking `0.3em`
+- Nenhuma sombra pesada; molduras finas e linhas divisórias em `outline-variant`
+- Imagens sempre com filtro sutil (grayscale 15-40%) que se desfaz em hover
+- Espaçamento generoso (`py-24 md:py-32` como padrão de seção)
 
-### Código
-- Nenhum framework CSS externo obrigatório (Tailwind aceitável se decidido)
-- CSS custom properties para paleta e tipografia (fácil troca de tema)
-- JavaScript sem dependências externas onde possível
-- Sem `console.log` em produção
-- Imagens otimizadas (WebP, lazy loading nativo)
-- Meta tags de SEO básicas + Open Graph para compartilhamento
-
-### Performance
-- Lighthouse Score mínimo: 90 em Performance, 95 em Acessibilidade
-- First Contentful Paint < 1.5s
-- Imagem hero com `loading="eager"` e `fetchpriority="high"`
+### Animações
+- Entrada de seções via `useInView` (fade-up ou fade-in)
+- Nenhuma animação pesada (sem Lottie/GSAP)
+- Vídeo `antes-depois` só toca 1x quando entra no viewport
 
 ### Acessibilidade
-- Contraste mínimo 4.5:1 em texto corrido
-- Todos os elementos interativos com `focus-visible`
-- `aria-label` em ícones sem texto
-- Estrutura semântica: `<header>`, `<main>`, `<section>`, `<footer>`
+- `alt` descritivo em todas as imagens
+- `aria-label` em ícones e controles
+- Semântica correta (`<header>`, `<main>`, `<section>`, `<footer>`, `<nav>`)
+- Estados `focus-visible` preservados nos cards de projeto
+
+### Performance
+- Assets como imports Vite (hashed, cache-friendly)
+- `loading="lazy"` em imagens fora do fold; `loading="eager"` nas capas
+- Nenhum framework pesado além de React + Tailwind
 
 ---
 
-## 6. Critérios de Aceite
+## 11. Estrutura de Diretórios
 
-### Hero Section
-- [ ] Imagem de fundo ocupa 100% da viewport height
-- [ ] Navbar é visível e legível sobre a imagem
-- [ ] Logo aparece sem fundo e com contraste adequado sobre a foto
-- [ ] Navbar muda visual ao scrollar
-- [ ] Hamburguer funcional em mobile
-- [ ] CTA abre WhatsApp no número correto com mensagem pré-definida
-- [ ] Scroll indicator presente e animado
-
-### About Section
-- [ ] Foto de Sandra exibida com qualidade e dimensão adequada
-- [ ] Texto biográfico completo e revisado
-- [ ] Stats com os 4 indicadores corretos
-- [ ] Animação de contador funciona ao scrollar até a seção
-- [ ] Layout 2 colunas em desktop, 1 coluna em mobile
-- [ ] "Formada pela UNISINOS/RS" visível
-
-### Seção "Como posso realizar seu sonho?"
-- [ ] Todos os 8 cards de serviço presentes com ícone + título + descrição
-- [ ] Grid responsivo: 4 cols desktop / 2 cols tablet / 1 col mobile
-- [ ] Animação de entrada dos cards ao scroll
-- [ ] Hover state visível nos cards
-- [ ] CTA ao final da seção presente e funcional
-- [ ] Nenhum emoji no HTML final (todos substituídos por SVG ou icon font)
-
-### Geral
-- [ ] Site responsivo em 320px, 768px, 1024px, 1440px
-- [ ] Scroll suave entre seções via `scroll-behavior: smooth`
-- [ ] Sem erros no console em produção
-- [ ] Meta title, description e OG tags configuradas
-- [ ] Favicon presente
+```
+Site/
+├── src/
+│   ├── App.tsx              # Roteamento
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   ├── ProjectsList.tsx
+│   │   └── ProjectDetail.tsx
+│   ├── components/          # Navbar, Hero, About, Manifesto,
+│   │                        # Services, Banner, Projects, Reforma,
+│   │                        # Atuacao, Testimonials, FinalCTA, Footer
+│   ├── projects/
+│   │   └── data.ts          # Fonte única dos 8 projetos
+│   ├── hooks/               # useInView, useScrolled,
+│   │                        # useLocalStorage, useVisitTracker
+│   ├── lib/storage.ts       # Chaves de localStorage
+│   ├── assets/              # Imagens de seções + vídeo
+│   ├── Logo/                # Variantes de logo (Hero, Cabeçário, Fivecom)
+│   └── Projetos/            # Assets de projetos (por pasta numerada)
+├── public/
+├── index.html
+├── package.json
+└── vite.config.ts
+```
 
 ---
 
-## 7. Fora de Escopo (MVP)
+## 12. Fora de Escopo (atual)
 
-- Galeria de projetos
-- Blog
-- Formulário com backend
-- Área de depoimentos/testimonials
+- Blog / conteúdo editorial
+- Formulário de contato com backend (contato hoje é 100% WhatsApp)
+- Área administrativa / CMS (conteúdo hardcoded em `data.ts` e componentes)
+- Versão em outros idiomas
 - Integração com CRM
-- Chat bot
-- Animações complexas (Lottie, GSAP)
-- Versão em outro idioma
 
 ---
 
-## 8. Próximos Passos
+## 13. Próximas Iterações Possíveis
 
-1. Confirmar com Sandra: sobrenome, números das stats, prêmios recebidos, cor de acento preferida
-2. Receber assets: logo (SVG), foto de Sandra, foto(s) para o hero, ícones
-3. Aprovação do PRD → início da implementação
-4. Wireframe de baixa fidelidade → aprovação → desenvolvimento
-5. Review visual com Sandra antes do deploy
+- Novos projetos no portfólio (mantendo estrutura de `data.ts`)
+- Página de serviços dedicada (`/servicos` deixaria de ser âncora)
+- Meta tags OG por projeto individual
+- Sitemap.xml e melhorias de SEO técnico
+- Analytics (GA4 / Meta Pixel) se decidido

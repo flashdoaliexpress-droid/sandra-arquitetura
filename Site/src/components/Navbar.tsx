@@ -52,6 +52,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
+                aria-current={active ? "page" : undefined}
                 className={`font-label-caps text-label-caps tracking-[0.32em] uppercase transition-colors ${
                   active ? "text-primary-container" : textColor
                 } ${hoverColor}`}

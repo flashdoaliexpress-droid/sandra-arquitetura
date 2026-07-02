@@ -25,6 +25,8 @@ export default function FinalCTA() {
               className="w-full h-full object-cover"
               src={CTA_IMAGE}
               alt="Sala de jantar bem iluminada com luz natural cruzando móveis sofisticados, projeto entregue pela Sandra Arquitetura em 2024."
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

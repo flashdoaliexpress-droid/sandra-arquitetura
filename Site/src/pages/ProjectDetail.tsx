@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 import {
   CATEGORY_LABELS,
   getProjectBySlug,
@@ -43,8 +44,43 @@ export default function ProjectDetail() {
 
   const allImages = [project.cover, ...project.gallery];
 
+  const seoTitle = `${project.title} · ${project.city} · Sandra da Rocha Arquitetura`;
+  const rawDescription = project.description[0] ?? project.subtitle ?? "";
+  const seoDescription =
+    rawDescription.length > 155
+      ? rawDescription.slice(0, 152).trimEnd() + "..."
+      : rawDescription;
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: rawDescription,
+    author: { "@id": "https://www.arqsandra.com.br/#sandra" },
+    creator: { "@id": "https://www.arqsandra.com.br/#sandra" },
+    dateCreated: project.year,
+    locationCreated: {
+      "@type": "Place",
+      name: project.location,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: project.city,
+        addressCountry: "BR",
+      },
+    },
+    image: `https://www.arqsandra.com.br${project.cover.startsWith("/") ? project.cover : "/" + project.cover}`,
+    url: `https://www.arqsandra.com.br/projetos/${project.slug}`,
+  };
+
   return (
     <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        path={`/projetos/${project.slug}`}
+        image={project.cover}
+        type="article"
+        jsonLd={projectJsonLd}
+      />
       <Navbar />
       <main className="bg-background min-h-screen pt-28 md:pt-32 pb-24">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">

@@ -2,13 +2,33 @@ import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 import {
   CATEGORIES,
   CATEGORY_LABELS,
   filterProjects,
+  PROJECTS,
   type Project,
   type ProjectCategoryFilter,
 } from "../projects/data";
+
+const FILTER_LABELS: Record<ProjectCategoryFilter, string> = {
+  todos: "Projetos",
+  residencial: "Projetos Residenciais",
+  interiores: "Projetos de Interiores",
+  comercial: "Projetos Comerciais",
+};
+
+const FILTER_DESCRIPTIONS: Record<ProjectCategoryFilter, string> = {
+  todos:
+    "Portfólio completo de projetos de arquitetura e interiores de Sandra da Rocha — reformas residenciais, projetos comerciais e obras autorais em Porto Alegre e todo o Brasil.",
+  residencial:
+    "Projetos residenciais assinados por Sandra da Rocha: casas novas, reformas de apartamentos e residências em Porto Alegre e todo o Brasil.",
+  interiores:
+    "Projetos de interiores e reformas de ambientes assinados por Sandra da Rocha — cozinhas, salas, banheiros e apartamentos completos.",
+  comercial:
+    "Projetos comerciais assinados por Sandra da Rocha: clínicas, escritórios, salas comerciais e concessionárias em Porto Alegre e todo o Brasil.",
+};
 
 function isValidFilter(value: string | null): value is ProjectCategoryFilter {
   return (
@@ -108,8 +128,31 @@ export default function ProjectsList() {
     }
   };
 
+  const seoTitle = `${FILTER_LABELS[activeFilter]} · Sandra da Rocha Arquitetura`;
+  const seoDescription = FILTER_DESCRIPTIONS[activeFilter];
+  const itemListJsonLd =
+    activeFilter === "todos"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: PROJECTS.map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `https://www.arqsandra.com.br/projetos/${p.slug}`,
+            name: p.title,
+          })),
+        }
+      : undefined;
+
   return (
     <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        path="/projetos"
+        noindex={activeFilter !== "todos"}
+        jsonLd={itemListJsonLd}
+      />
       <Navbar />
       <main className="bg-background min-h-screen pt-32 md:pt-40 pb-24">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
